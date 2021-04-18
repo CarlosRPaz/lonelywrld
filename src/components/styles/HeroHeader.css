@@ -1,0 +1,33 @@
+@font-face {
+    font-family: mainFont;
+    src: url('./../../fonts/Supercarver.otf');
+}
+
+.heroHeader {
+    position: relative;
+    height: 340px;
+    object-fit: contain;
+    margin-top: 70px;
+}
+
+.heroHeader__contents {
+    margin-left: 20px;
+    padding-top: 80px;
+    height: auto;
+    background-color: rgba(216, 216, 216, 0.247);
+}
+
+.heroHeader__season {
+
+}
+
+.heroHeader__title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    padding-bottom: 0.3rem;
+    font-family: mainFont;
+}
+
+.heroHeader__title {
+    
+}
