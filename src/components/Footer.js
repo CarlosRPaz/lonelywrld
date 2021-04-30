@@ -1,10 +1,11 @@
 import React from 'react'
 import './styles/Footer.css'
+import footerLogo from '../img/LWLogo.png'
 
 function Footer() {
     return (
         <div className="footer">
-            <h1>Footer</h1>
+            <img src={footerLogo} alt="" className="footer__logo" />
         </div>
     )
 }

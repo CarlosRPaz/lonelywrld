@@ -1,0 +1,35 @@
+.subtotal {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px 20px 20px;
+}
+
+.subtotal__orderInfo {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.subtotal__orderRow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  color: gray;
+  margin-top: 10px;
+}
+
+.subtotal__subtotalPrice {
+  color: #111;
+}
+
+.subtotal__proceedButton {
+  background-color: #f8c33b;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+
+  color: #111;
+  font-size: 1rem;
+  font-weight: 600;
+}

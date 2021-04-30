@@ -1,0 +1,30 @@
+.product {
+    width: 10rem;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product__img {
+    height: 240px;
+    border-radius: 3px;
+}
+
+.product__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.product__title {
+    font-weight: 600;
+    margin: 4px;
+}
+
+.product__price {
+    font-size: 14px;
+}

@@ -1,0 +1,13 @@
+.checkoutScreen {
+  margin-top: 70px;
+}
+
+.checkoutScreen__section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkoutScreen__paymentDetails {
+}

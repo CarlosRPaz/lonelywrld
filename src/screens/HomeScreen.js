@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 function HomeScreen() {
     return (
         <div className="homeScreen">
-            <Nav />
             <HeroHeader />
             <Products />
             <About />

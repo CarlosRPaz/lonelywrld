@@ -11,13 +11,19 @@ function HeroHeader() {
             }}
         >
             <div className="heroHeader__contents">
-                <h3 className="heroHeader__season">Season 1 Dead Flower</h3>
-                <h1 className="heroHeader__title">LonelyWrld</h1>
-                <p className="heroHeader__paragraph">You’re doing this is to make your life better. Nothing about you is a mistake so stop trying to be like others and BE YOURSELF.</p>
+                <h3 className="heroHeader__season">Season 1<span>Dead Flower</span></h3>
+                <h1 className="heroHeader__title">Lonely Wrld</h1>
+                <p className="heroHeader__description">You’re doing this is to make your life better. Nothing about you is a mistake so stop trying to be like others and <br /><b>BE YOURSELF.</b></p>
             </div>
 
-            <div className="heroHeader--bottomCurve" />
-        </header>
+            <svg className="heroHeader--bottomCurve" viewBox="100 0 600 320">
+                <path
+                    fill="#fff"
+                    fillOpacity="1"
+                    d="M 700 250 L 700 350 L 100 350 L 100 250 L 100 250 C 100 250 400 350 700 250 ">
+                </path>
+            </svg>
+        </header >
     )
 }
 
