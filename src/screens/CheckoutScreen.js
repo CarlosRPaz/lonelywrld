@@ -4,137 +4,200 @@ import Nav from "../components/Nav";
 import { useStateValue } from "../StateProvider";
 import CartProduct from "../components/CartProduct";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import CurrencyFormat from "react-currency-format";
-import { getBasketTotal } from "./../reducer";
-import { useHistory } from "react-router-dom";
-import axios from "./../axios";
+import { Link, useHistory } from "react-router-dom";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-function CheckoutScreen() {
-  const [{ basket }, dispatch] = useStateValue();
+import AddressForm from "./../components/AddressForm";
+import PaymentForm from "./../components/PaymentForm";
+
+import { commerce } from "./../lib/commerce";
+
+import {
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  CircularProgress,
+  Divider,
+  Button,
+  CssBaseline,
+  Typography
+} from "@material-ui/core";
+import { flexbox } from "@material-ui/system";
+
+const steps = ["Shipping address", "Payment details"];
+
+function CheckoutScreen({
+  cart,
+  order,
+  onCaptureCheckout,
+  error,
+  orderFN,
+  orderLN,
+  customerRef,
+  orderEmail
+}) {
+  const [activeStep, setActiveStep] = useState(0);
+  const [checkoutToken, setCheckoutToken] = useState(null);
+  const [shippingData, setShippingData] = useState({});
+  const [isFinished, setIsFinished] = useState(false);
+
   const history = useHistory();
 
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const [succeeded, setSucceeded] = useState(false);
-  const [processing, setProcessing] = useState("");
-  const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState(true);
-
+  // Generate Commercejs checkout token
   useEffect(() => {
-    // generate the special stripe secret which allows us to charge a customer
-    const getClientSecret = async () => {
-      const response = await axios({
-        method: "post",
-        // Stripe expects the total in a currency's subunits
-        url: `/checkout/create?total=${getBasketTotal(basket) * 100}`
-      });
-      setClientSecret(response.data.clientSecret);
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(cart.id, {
+          type: "cart"
+        });
+        setCheckoutToken(token);
+      } catch (error) {
+        console.log(error);
+        if (activeStep === 0 || activeStep === 1) {
+          history.push("/");
+        }
+      }
     };
 
-    getClientSecret();
-  }, [basket]);
+    generateToken();
+  }, [cart]);
 
-  console.log("The Secret is >>> ", clientSecret);
+  const nextStep = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
+  const backStep = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
 
-  const handleSubmit = async e => {
-    // do all the fancy Stripe stuff
-    e.preventDefault();
-    setProcessing(true);
+  const next = data => {
+    setShippingData(data);
 
-    const payload = await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)
-        }
-      })
-      .then(({ paymentIntent }) => {
-        // paymentIntent = payment confirmation
-
-        setSucceeded(true);
-        setError(null);
-        setProcessing(false);
-
-        dispatch({
-          type: "EMPTY_BASKET"
-        });
-
-        history.replace("/orders");
-      });
+    nextStep();
   };
 
-  const handleChange = e => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details'
-    setDisabled(e.empty);
-    setError(e.error ? e.error.message : "");
+  const timeout = () => {
+    setTimeout(() => {
+      setIsFinished(true);
+    }, 3000);
   };
+
+  let Confirmation = () =>
+    !error && isFinished ? (
+      <>
+        <div className="checkoutScreen__postCheckout">
+          <Typography variant="h5">
+            Thank you, {orderFN} {orderLN}!
+          </Typography>
+          <Divider />
+          <Typography
+            variant="subtitle2"
+            className="checkoutScreen__postCheckout"
+            style={{ marginBottom: "10px" }}
+          >
+            Order ref: {customerRef}
+          </Typography>
+          <p>Your order is being processed.</p>
+          <p>
+            Check your email:{" "}
+            <span style={{ fontWeight: "600" }}>{orderEmail}</span>
+          </p>
+        </div>
+        <br />
+        <Button
+          component={Link}
+          to="/"
+          variant="outlined"
+          type="button"
+          style={{ marginLeft: "10px" }}
+        >
+          Back to Home
+        </Button>
+      </>
+    ) : isFinished ? (
+      <>
+        <div className="checkoutScreen__postCheckout">
+          {error ? (
+            <Typography variant="h5">
+              There was an error with your purchase.
+            </Typography>
+          ) : (
+            <Typography variant="h5">Thank you for your purchase!</Typography>
+          )}
+        </div>
+        <Divider />
+        <h4 className="checkoutScreen__postCheckout">Error: {error}</h4>
+        <br />
+        <Button
+          component={Link}
+          to="/"
+          variant="outlined"
+          type="button"
+          style={{ marginLeft: "10px" }}
+        >
+          Back to Home
+        </Button>
+      </>
+    ) : (
+      <div className="checkoutScreen__circularProgress">
+        <CircularProgress />
+      </div>
+    );
+
+  if (error) {
+    <>
+      <h5>Error: {error}</h5>
+      <br />
+      <Button
+        component={Link}
+        to="/"
+        variant="outlined"
+        type="button"
+        style={{ marginLeft: "10px" }}
+      >
+        Back to Home
+      </Button>
+    </>;
+  }
+
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutToken={checkoutToken} next={next} />
+    ) : (
+      <PaymentForm
+        shippingData={shippingData}
+        checkoutToken={checkoutToken}
+        nextStep={nextStep}
+        backStep={backStep}
+        onCaptureCheckout={onCaptureCheckout}
+        timeout={timeout}
+      />
+    );
+
+  if (!cart.line_items) return "Loading ... ";
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
-    <div className="checkoutScreen">
-      {/* Delivery Address */}
-      <div className="checkoutScreen__section">
-        <div className="checkoutScreen__sectionTitle">
-          <h3>Delivery Address</h3>
-        </div>
-        <div className="checkoutScreen__address">
-          <p>123 React Lane</p>
-          <p>Los Angeles, CA</p>
-        </div>
-      </div>
-
-      {/* Review Items */}
-      <div className="checkoutScreen__section">
-        <div className="checkoutScreen__sectionTitle">
-          <h3>Review items and delivery</h3>
-        </div>
-        <div className="checkoutScreen__items">
-          {basket.map(item => (
-            <CartProduct
-              id={item.id}
-              title={item.title}
-              img={item.img}
-              price={item.price}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Payment Method */}
-      <div className="checkoutScreen__section">
-        <div className="checkoutScreen__sectionTitle">
-          <h3>Payment Method</h3>
-        </div>
-        <div className="checkoutScreen__paymentDetails">
-          {/* Stripe Magic */}
-          <form onSubmit={handleSubmit}>
-            <CardElement onChange={handleChange} />
-
-            <div className="checkoutScreen__paymentPriceContainer">
-              <CurrencyFormat
-                renderText={value => (
-                  <>
-                    <h3>Order Total: {value}</h3>
-                  </>
-                )}
-                decimalScale={2}
-                value={getBasketTotal(basket)}
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
-              />
-              <button disabled={processing || disabled || succeeded}>
-                <span>{processing ? <p>Processing...</p> : "Buy Now"}</span>
-              </button>
+    <>
+      <div className="checkoutScreen">
+        <main>
+          <Paper elevation={0}>
+            <div className="checkoutScreen__nav">
+              <h1 className="checkoutScreen__myCart">Checkout</h1>
             </div>
-
-            {/* Errors */}
-            {error && <div>{error}</div>}
-          </form>
-        </div>
+            <Stepper activeStep={activeStep}>
+              {steps.map(step => (
+                <Step key={step}>
+                  <StepLabel>{step}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length ? (
+              <Confirmation />
+            ) : (
+              checkoutToken && <Form />
+            )}
+          </Paper>
+        </main>
       </div>
-    </div>
+    </>
   );
 }
 

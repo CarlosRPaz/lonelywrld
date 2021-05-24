@@ -1,33 +1,58 @@
 import React from "react";
 import "./styles/CartScreen.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import grayLogo from "./../img/grayLogo.png";
 import Subtotal from "../components/Subtotal";
 import { useStateValue } from "../StateProvider";
 import CartProduct from "../components/CartProduct";
+import Nav from "../components/Nav";
+import { Link } from "react-router-dom";
 
-function CartScreen() {
+function CartScreen({
+  cart,
+  handleUpdateCartQty,
+  handleRemoveFromCart,
+  handleUpdateSize
+}) {
   const [{ basket }, dispatch] = useStateValue();
+
+  if (!cart.line_items) return "Loading ... ";
+
   return (
     <div className="cartScreen">
       <div className="cartScreen__nav">
-        <button className="cartScreen__backButton">
-          <ArrowBackIosIcon className="cartScreen__back" />
-        </button>
+        <Link to="/">
+          <button className="cartScreen__backButton">
+            <ArrowBackIosIcon className="cartScreen__back" />
+          </button>
+        </Link>
         <h1 className="cartScreen__myCart">My Cart</h1>
       </div>
       <div className="cartScreen__products">
-        {basket.map(item => (
+        {cart.line_items.map(item => (
           <CartProduct
-            id={item.id}
-            title={item.title}
-            img={item.img}
-            price={item.price}
+            key={item.id}
+            cartItem={item}
+            handleUpdateCartQty={handleUpdateCartQty}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleUpdateSize={handleUpdateSize}
           />
         ))}
-        {basket.length === 0 ? <div>Your cart is empty</div> : void 0}
+
+        {!cart.line_items.length ? (
+          <div className="cartScreen__emptyCart">Your cart is empty</div>
+        ) : (
+          void 0
+        )}
+
+        <div className="extraSpace" />
       </div>
       <div className="cartScreen__subtotal">
-        <Subtotal />
+        <Subtotal
+          subtotal={cart.subtotal.formatted_with_symbol}
+          totalItems={cart.total_items}
+          cartLength={cart.line_items.length}
+        />
       </div>
     </div>
   );

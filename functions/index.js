@@ -34,3 +34,6 @@ app.post("/checkout/create", async (request, response) => {
 
 // - Listen command
 exports.api = functions.https.onRequest(app);
+
+// Example Endpoint
+// http://127.0.0.1:5001/lonelywrld-9f698/us-central1/api

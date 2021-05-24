@@ -1,0 +1,57 @@
+/* .StripeElement applies to CardElement*/
+
+.StripeElement {
+  padding: 10px;
+  margin: 20px 10px;
+  font-size: 24px !important;
+  background-color: rgb(238, 238, 238);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.StripeElement::placeholder {
+  font-size: 24px;
+  color: "#aab7c4";
+  font-weight: 900;
+}
+.StripeElement--empty {
+  font-size: 24px;
+  color: "#aab7c4";
+  font-weight: 900;
+}
+.StripeElement--focus {
+  border: 1px solid rgb(212, 212, 212);
+  background-color: rgb(255, 255, 255);
+  padding: 12px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.StripeElement--invalid {
+  border: 1px solid red;
+  color: #ffc7ee;
+}
+/*************************************************/
+.paymentForm__orderInfoContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.paymentForm__orderInfo {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.paymentForm__orderRow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: gray;
+  margin-bottom: 6px;
+}
+
+.paymentForm__subtotalPrice {
+  color: #1a1a1a;
+}

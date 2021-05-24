@@ -1,33 +1,33 @@
 @font-face {
-    font-family: boldFont;
-    src: url('./../../fonts/theboldfont.ttf');
+  font-family: boldFont;
+  src: url("./../../fonts/theboldfont.ttf");
 }
 
 .products {
-    width: 340px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 340px;
+  margin-left: auto;
+  margin-right: auto;
 
-    margin-top: 10px;
-    margin-bottom: 40px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
 .products > h5 {
-    font-weight: normal;
-    text-align: center;
-    font-size: 0.8rem;
+  font-weight: normal;
+  text-align: center;
+  font-size: 0.8rem;
 }
 
 .products > h1 {
-    text-align: center;
-    font-size: 1.4rem;
-    margin-top: 30px;
-    margin-bottom: 6px;
-    font-family: boldFont;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 30px;
+  margin-bottom: 6px;
+  font-family: boldFont;
 }
 
 .products__productContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

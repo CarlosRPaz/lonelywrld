@@ -1,0 +1,60 @@
+.reviewProduct {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  padding-right: 10px;
+}
+.reviewProduct:nth-child(even) {
+  background-color: rgb(245, 245, 245);
+}
+.reviewProduct:first-of-type {
+  margin-top: 0;
+}
+
+.reviewProduct__img {
+  width: 80px;
+  border-radius: 5px;
+}
+
+.reviewProduct__info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 2px;
+}
+
+.reviewProduct__title {
+  font-size: 1rem;
+}
+
+.reviewProduct__price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(112, 112, 112);
+}
+
+.reviewProduct__prodDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.reviewProduct__detail {
+  display: flex;
+  align-items: center;
+}
+
+.reviewProduct__label {
+  color: rgb(112, 112, 112);
+  margin-right: 6px;
+}
+
+.reviewProduct__value {
+  color: rgb(112, 112, 112);
+  font-weight: 600;
+}

@@ -2,12 +2,58 @@
   margin-top: 70px;
 }
 
-.checkoutScreen__section {
+.checkoutScreen__nav {
   display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border-bottom: 1px solid lightgray;
+  padding: 10px 10px 0px 10px;
+  position: relative;
+}
+
+.checkoutScreen__backButton {
+  position: absolute;
+
+  color: rgb(112, 112, 112);
+  border-radius: 5px;
+  border: 2px solid rgb(179, 179, 179);
+  width: 26px;
+  height: 26px;
+}
+
+.checkoutScreen__back {
+  width: 14px !important;
+  text-align: center;
+  padding-left: 1px;
+  margin-top: -2px;
+}
+
+.checkoutScreen__myCart {
+  font-size: 1.2rem;
+  color: rgb(112, 112, 112);
+  width: 100%;
+  text-align: center;
 }
 
 .checkoutScreen__paymentDetails {
+}
+
+.checkoutScreen__buyButton {
+  background-color: #f8c33b;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+
+  color: #111;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.checkoutScreen__circularProgress {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.checkoutScreen__postCheckout {
+  margin: 10px;
 }

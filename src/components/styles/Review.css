@@ -1,0 +1,31 @@
+.review__section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+.review__section:first-of-type {
+  border-top: 1px solid lightgray;
+}
+
+.review__sectionTitle {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.review__saSection {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.review__saSectionLabel {
+  display: flex;
+  flex: 2;
+  font-weight: 600;
+  color: rgb(112, 112, 112);
+}
+.review__saSectionInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+}

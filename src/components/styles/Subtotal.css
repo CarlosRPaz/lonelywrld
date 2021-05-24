@@ -32,4 +32,11 @@
   color: #111;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.subtotal__proceedButton:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
 }

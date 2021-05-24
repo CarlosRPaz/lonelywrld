@@ -5,7 +5,7 @@ import { useStateValue } from "../StateProvider";
 import { getBasketTotal } from "./../reducer";
 import { useHistory } from "react-router-dom";
 
-function Subtotal() {
+function Subtotal({ subtotal, totalItems, cartLength }) {
   const history = useHistory();
   const [{ basket }, dispatch] = useStateValue();
 
@@ -17,14 +17,14 @@ function Subtotal() {
           <>
             <div className="subtotal__orderRow">
               <p className="subtotal__subtotal">
-                Subtotal ({basket.length} items):
+                Subtotal ({totalItems} items):
               </p>
               <p className="subtotal__subtotalPrice">{value}</p>
             </div>
           </>
         )}
         decimalScale={2}
-        value={getBasketTotal(basket)}
+        value={subtotal}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
@@ -32,6 +32,7 @@ function Subtotal() {
       <button
         onClick={e => history.push("/checkout")}
         className="subtotal__proceedButton"
+        disabled={!cartLength}
       >
         Proceed to Checkout
       </button>

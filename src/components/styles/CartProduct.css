@@ -10,6 +10,9 @@
 .cartProduct:nth-child(even) {
   background-color: rgb(255, 255, 255);
 }
+.cartProduct:first-of-type {
+  margin-top: 0;
+}
 
 .cartProduct__img {
   width: 200px;
@@ -62,6 +65,17 @@
 .cartProduct__amountAddSubIcons {
   color: rgb(112, 112, 112);
   width: 16px !important;
+}
+
+.cartProduct__sizeLabel {
+  color: rgb(112, 112, 112);
+  margin-left: 30px;
+  margin-right: 6px;
+}
+
+.cartProduct__size {
+  color: rgb(112, 112, 112);
+  font-weight: 600;
 }
 
 .cartProduct__removeButton {

@@ -4,8 +4,13 @@
 
 .cartScreen__nav {
   display: flex;
-  padding: 10px 10px 0px 10px;
+  background-color: white;
+  padding: 10px 10px 10px 10px;
   position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 6;
 }
 
 .cartScreen__backButton {
@@ -34,6 +39,7 @@
 
 .cartScreen__products {
   margin: 10px;
+  margin-top: 0;
 }
 
 .cartScreen__subtotal {
@@ -44,4 +50,16 @@
   width: 100%;
 
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.cartScreen__emptyCart {
+  font-size: 1.2rem;
+  color: rgb(112, 112, 112);
+  width: 100%;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.extraSpace {
+  height: 180px;
 }
