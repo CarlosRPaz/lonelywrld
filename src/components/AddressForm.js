@@ -102,12 +102,43 @@ function AddressForm({ checkoutToken, next }) {
           )}
         >
           <Grid container spacing={1}>
-            <FormInput name="firstName" label="First Name" xs={6} sm={6} />
-            <FormInput name="lastName" label="Last Name" xs={6} sm={6} />
-            <FormInput name="email" label="Email" xs={12} sm={6} />
-            <FormInput name="address1" label="Address" xs={12} sm={6} />
-            <FormInput name="city" label="City" xs={12} sm={6} />
-            <FormInput name="zip" label="ZIP / Postal code" xs={12} sm={6} />
+            <FormInput
+              req={true}
+              name="firstName"
+              label="First Name"
+              xs={6}
+              sm={6}
+            />
+            <FormInput
+              req={true}
+              name="lastName"
+              label="Last Name"
+              xs={6}
+              sm={6}
+            />
+            <FormInput req={true} name="email" label="Email" xs={12} sm={6} />
+            <FormInput
+              req={true}
+              name="address1"
+              label="Street Address"
+              xs={8}
+              sm={6}
+            />
+            <FormInput
+              req={false}
+              name="address2"
+              label="Apt, suite, etc."
+              xs={4}
+              sm={6}
+            />
+            <FormInput req={true} name="city" label="City" xs={12} sm={6} />
+            <FormInput
+              req={true}
+              name="zip"
+              label="ZIP / Postal code"
+              xs={12}
+              sm={6}
+            />
             <Grid item xs={6} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
               <Select

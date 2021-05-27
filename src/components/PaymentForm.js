@@ -47,6 +47,7 @@ function PaymentForm({
         shipping: {
           name: "Primary",
           street: shippingData.address1,
+          street_2: shippingData.address2,
           town_city: shippingData.city,
           county_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.zip,
@@ -101,8 +102,8 @@ function PaymentForm({
                     </p>
                   </div>
                   <div className="paymentForm__orderRow">
-                    <p className="paymentForm__subtotal">Order Total:</p>
-                    <p className="paymentForm__subtotalPrice">
+                    <p className="paymentForm__total">Order Total:</p>
+                    <p className="paymentForm__totalPrice">
                       <CurrencyFormat
                         renderText={value => <p>{value}</p>}
                         decimalScale={2}

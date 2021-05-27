@@ -14,13 +14,19 @@ function Footer() {
           <Link to="/contact" className="footer__link">
             Contact Us
           </Link>
-          <Link to="/contact" className="footer__link">
+          <Link to="/faq" className="footer__link">
             FAQ
           </Link>
         </div>
         <div className="footer__column">
           <div className="footer__label">Follow Us</div>
-          <InstagramIcon className="footer__IGLogo" />
+          <a
+            href="https://www.instagram.com/lonelywrl.d/"
+            target="_blank"
+            className="footer__IGLogoLink"
+          >
+            <InstagramIcon className="footer__IGLogo" />
+          </a>
         </div>
       </div>
     </div>

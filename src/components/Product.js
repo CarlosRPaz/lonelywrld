@@ -19,6 +19,9 @@ function Product({ mainProduct, onAddToCart }) {
   const [variantInfo, setVariantInfo] = useState();
   const [prodVariants, setProdVariants] = useState([]);
   const [mainProductVG_ID, setMainProductVG_ID] = useState("");
+  const [tempStock, setTempStock] = useState(1);
+  const [isSoldOut, setIsSoldOut] = useState(false);
+  const [tempVrntStock, setTempVrntStock] = useState(1);
 
   const fetchProductVariants = prod_id => {
     commerce.products
@@ -30,11 +33,41 @@ function Product({ mainProduct, onAddToCart }) {
     setShow(!show);
   };
 
+  if (show) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
+
   const addTempCartQty = () => {
     setTempQty(tempQty + 1);
   };
   const subTempCartQty = () => {
     setTempQty(tempQty - 1);
+  };
+  if (tempQty > tempVrntStock) {
+    setTempQty(tempVrntStock);
+  }
+
+  const activeBtn = (btn, vrntStock) => {
+    setActive(btn);
+    setVariantInfo({ [mainProduct.variant_groups[0].id]: btn });
+
+    setTempVrntStock(vrntStock);
+  };
+  const processInventory = () => {
+    let tempNum =
+      prodVariants[0]?.inventory +
+      prodVariants[1]?.inventory +
+      prodVariants[2]?.inventory +
+      prodVariants[3]?.inventory;
+
+    setTempStock(tempNum);
+    if (tempNum === 0) {
+      setIsSoldOut(true);
+    } else {
+      setIsSoldOut(false);
+    }
   };
 
   useEffect(() => {
@@ -51,21 +84,21 @@ function Product({ mainProduct, onAddToCart }) {
     setSizes(finalSizeArray);
   }, []);
 
-  const activeBtn = btn => {
-    setActive(btn);
-    setVariantInfo({ [mainProduct.variant_groups[0].id]: btn });
-  };
-
   useEffect(() => {
     fetchProductVariants(mainProduct.id);
     setMainProductVG_ID(mainProduct.variant_groups[0].id);
     //console.log(mainProduct.variant_groups[0].id);
+
+    processInventory();
   }, [show]);
 
   //console.log(mainProduct.id);
   //vrnt_gvRjwOQ3qG54mN
   //fetchProductVariants(mainProduct.id)
   //console.log(mainProduct);
+  //{console.log(prodVariants)}
+  //{console.log(prodVariants[idx].inventory)}
+  //console.log(mainProduct.inventory.available);
 
   return (
     <div>
@@ -76,10 +109,14 @@ function Product({ mainProduct, onAddToCart }) {
           style={{
             backgroundSize: "cover",
             backgroundImage: `url(${mainProduct.media.source})`,
-            backgroundPosition: "center center"
+            backgroundPosition: "center top"
           }}
         >
-          {mainProduct.is.sold_out ? (
+          {prodVariants[0]?.inventory +
+            prodVariants[1]?.inventory +
+            prodVariants[2]?.inventory +
+            prodVariants[3]?.inventory ===
+          0 ? (
             <div className="product__tag tag__soldOut">Sold Out</div>
           ) : (
             void 0
@@ -155,12 +192,12 @@ function Product({ mainProduct, onAddToCart }) {
                   className="productModal__description"
                   dangerouslySetInnerHTML={{ __html: mainProduct.description }}
                 />
-                {!mainProduct.is.sold_out ? (
-                  <p className="productModal__stock">
-                    <span>{mainProduct.inventory.available}</span> left in stock
-                  </p>
-                ) : (
+                {isSoldOut ? (
                   <div className="productModal__soldOut">Sold Out</div>
+                ) : (
+                  <p className="productModal__stock">
+                    <span>{tempStock}</span> left in stock
+                  </p>
                 )}
               </div>
 
@@ -177,11 +214,11 @@ function Product({ mainProduct, onAddToCart }) {
                       }
                       disabled={prodVariants[idx].inventory === 0}
                       value={option.text}
-                      onClick={() => activeBtn(option.value)}
+                      onClick={() =>
+                        activeBtn(option.value, prodVariants[idx].inventory)
+                      }
                     >
                       {option.text}
-                      {console.log(prodVariants)}
-                      {console.log(prodVariants[idx].inventory)}
                     </button>
                   ))}
                 </div>
@@ -191,14 +228,16 @@ function Product({ mainProduct, onAddToCart }) {
                   <button
                     className="productModal__amountButton"
                     onClick={subTempCartQty}
-                    disabled={tempQty === 1}
+                    disabled={tempQty === 1 || isSoldOut}
                   >
                     <RemoveIcon className="productModal__amountAddSubIcons" />
                   </button>
+
                   <p className="productModal__amount">{tempQty}</p>
                   <button
                     className="productModal__amountButton"
                     onClick={addTempCartQty}
+                    disabled={isSoldOut || tempQty >= tempVrntStock}
                   >
                     <AddIcon className="productModal__amountAddSubIcons" />
                   </button>
@@ -211,7 +250,7 @@ function Product({ mainProduct, onAddToCart }) {
                   toggleModal();
                 }}
                 className="productModal__addButton"
-                disabled={mainProduct.is.sold_out}
+                disabled={isSoldOut}
               >
                 Add to Cart
               </button>

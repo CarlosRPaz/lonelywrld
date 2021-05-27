@@ -55,3 +55,12 @@
 .paymentForm__subtotalPrice {
   color: #1a1a1a;
 }
+
+.paymentForm__total {
+  font-size: 1.2rem;
+}
+
+.paymentForm__totalPrice {
+  color: #1a1a1a;
+  font-size: 1.2rem;
+}

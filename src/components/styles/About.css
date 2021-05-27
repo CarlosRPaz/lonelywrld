@@ -1,58 +1,90 @@
 @font-face {
-    font-family: mainFont;
-    src: url('./../../fonts/Supercarver.otf');
+  font-family: mainFont;
+  src: url("./../../fonts/Supercarver.otf");
 }
 @font-face {
-    font-family: boldFont;
-    src: url('./../../fonts/theboldfont.ttf');
+  font-family: boldFont;
+  src: url("./../../fonts/theboldfont.ttf");
 }
 
 .about {
-    width: 340px;
-    margin-left: auto;
-    margin-right: auto;
+  width: auto;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 
-    margin-top: 40px;
-    margin-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .about__titleContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .about__title1 {
-    text-align: center;
-    font-size: 1.4rem;
-    margin-bottom: 6px;
-    font-family: boldFont;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+  font-family: boldFont;
 }
 .about__title2 {
-    font-family: mainFont;
-    font-size: 1.4rem;
-    margin-left: 10px;
-    text-align: center;
+  font-family: mainFont;
+  font-size: 1.4rem;
+  margin-left: 10px;
+  text-align: center;
 }
 
-
 .about__container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .about__img {
-    height: 240px;
-    border-radius: 3px;
+  height: 340px;
+  border-radius: 3px;
 }
 
 .about__paragraph {
-    padding-top: 12px;
+  padding-top: 12px;
+  font-size: 1rem;
 }
 
 .about__container > p > span {
-    font-family: mainFont;
+  font-family: mainFont;
 }
 
 .about__heart {
-    height: 12px !important;   
+  height: 12px !important;
+}
+
+@media (min-width: 400px) {
+  .about__img {
+    height: 420px;
+  }
+}
+@media (min-width: 480px) {
+  .about__img {
+    height: 540px;
+  }
+}
+@media (min-width: 600px) {
+  .about__img {
+    height: 720px;
+  }
+  .about__paragraph {
+    padding-top: 20px;
+    font-size: 1.2rem;
+  }
+  .about__title1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+  .about__title2 {
+    font-size: 1.8rem;
+    margin-left: 16px;
+  }
 }

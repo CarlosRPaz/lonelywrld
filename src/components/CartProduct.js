@@ -29,7 +29,7 @@ function CartProduct({
         style={{
           backgroundSize: "cover",
           backgroundImage: `url(${cartItem.media.source})`,
-          backgroundPosition: "center center"
+          backgroundPosition: "center top"
         }}
       />
       <div className="cartProduct__info">

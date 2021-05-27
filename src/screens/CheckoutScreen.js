@@ -86,16 +86,12 @@ function CheckoutScreen({
             Thank you, {orderFN} {orderLN}!
           </Typography>
           <Divider />
-          <Typography
-            variant="subtitle2"
-            className="checkoutScreen__postCheckout"
-            style={{ marginBottom: "10px" }}
-          >
-            Order ref: {customerRef}
-          </Typography>
-          <p>Your order is being processed.</p>
+
+          <p style={{ margin: "10px 0 10px 0" }}>
+            Your order is being processed.
+          </p>
           <p>
-            Check your email:{" "}
+            We have emailed your order receipt to:{" "}
             <span style={{ fontWeight: "600" }}>{orderEmail}</span>
           </p>
         </div>

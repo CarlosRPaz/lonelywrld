@@ -27,7 +27,9 @@ function Review({ shippingData, checkoutToken }) {
           <div className="review__saSection">
             <div className="review__saSectionLabel">Address</div>
             <div className="review__saSectionInfo">
-              <div>{shippingData.address1}</div>
+              <div>
+                {shippingData.address1} {shippingData.address2}
+              </div>
               <div>
                 {shippingData.city}, {shippingData.shippingSubdivision}{" "}
                 {shippingData.zip}

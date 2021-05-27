@@ -1,10 +1,14 @@
 .footer {
-  width: 220px;
+  width: auto;
+  max-width: 260px;
   margin-left: auto;
   margin-right: auto;
 
   margin-top: 40px;
   margin-bottom: 20px;
+
+  padding-left: 20px;
+  padding-right: 20px;
 
   justify-items: center;
   justify-content: center;
@@ -45,4 +49,26 @@
 
 .footer__IGLogo {
   color: #747474;
+}
+
+@media (min-width: 600px) {
+  .footer {
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+  .footer__logo {
+    width: 280px;
+  }
+  .footer__label {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .footer__link {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .footer__IGLogo {
+    width: 30px !important;
+    height: 30px !important;
+  }
 }

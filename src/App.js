@@ -3,7 +3,6 @@ import "./App.css";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import CheckoutScreen from "./screens/CheckoutScreen";
-import ProductScreen from "./screens/ProductScreen";
 import ContactScreen from "./screens/ContactScreen";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -13,6 +12,7 @@ import OrdersScreen from "./screens/OrdersScreen";
 
 import { commerce } from "./lib/commerce";
 import Footer from "./components/Footer";
+import FAQScreen from "./screens/FAQScreen";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -43,6 +43,7 @@ function App() {
         variantInfo
       );
       setCart(cart);
+      console.log(cart);
     } else {
       window.alert("Please select a product size");
     }
@@ -97,6 +98,10 @@ function App() {
     <div className="app">
       <Router>
         <Switch>
+          <Route path="/faq">
+            <Nav totalItems={cart.total_items} />
+            <FAQScreen />
+          </Route>
           <Route path="/contact">
             <Nav totalItems={cart.total_items} />
             <ContactScreen />
@@ -126,10 +131,6 @@ function App() {
               handleRemoveFromCart={handleRemoveFromCart}
               handleUpdateSize={handleUpdateSize}
             />
-          </Route>
-          <Route path="/product">
-            <Nav totalItems={cart.total_items} />
-            <ProductScreen handleUpdateCartQty={handleUpdateCartQty} />
           </Route>
           <Route exact path="/">
             <Nav totalItems={cart.total_items} />

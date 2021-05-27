@@ -1,56 +1,174 @@
 @font-face {
-    font-family: mainFont;
-    src: url('./../../fonts/Supercarver.otf');
+  font-family: mainFont;
+  src: url("./../../fonts/Supercarver.otf");
 }
 
 .heroHeader {
-    position: relative;
-    height: 340px;
-    object-fit: contain;
-    margin-top: 70px;
+  position: relative;
+  height: 480px;
+  object-fit: cover;
+  margin-top: 70px;
 }
 
 .heroHeader > svg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 .heroHeader__contents {
-    padding-left: 20px;
-    padding-top: 60px;
-    height: 280px;
-    background-color: rgba(0, 0, 0, 0.61);
+  padding-left: 20px;
+  padding-top: 190px;
+  height: 290px;
+  background-color: rgba(0, 0, 0, 0.61);
 }
 
 .heroHeader__season {
-    font-size: 1rem;
-    font-weight: normal;
-    color: #ffffff;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #ffffff;
 }
 .heroHeader__contents > h3 > span {
-    margin-left: 20px;
-    color: rgb(255, 255, 75);
-    font-style: italic;
+  margin-left: 20px;
+  color: rgb(255, 255, 75);
+  font-style: italic;
 }
 
 .heroHeader__title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-top: 0.4rem;
-    margin-bottom: 0.6rem;
-    font-family: mainFont;
-    color: #ffffff;
-
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+  font-family: mainFont;
+  color: #ffffff;
 }
 
 .heroHeader__description {
-    width: 12rem;
-    line-height: 1.3;
-    font-size: 1rem;
+  width: 12rem;
+  line-height: 1.3;
+  font-size: 1rem;
+  max-width: 360px;
+  height: auto;
+  font-weight: 400;
+  color: #ffffff;
+  border-left: 2px solid #ffffff;
+  padding-left: 10px;
+}
+
+@media (min-width: 480px) {
+  .heroHeader__contents {
+    padding-left: 20px;
+    padding-top: 20px;
+    height: 440px;
+  }
+}
+@media (min-width: 600px) {
+  .heroHeader__contents {
+    padding-left: 40px;
+    padding-top: 40px;
+    height: 440px;
+  }
+}
+@media (min-width: 900px) {
+  .heroHeader {
+    height: 680px;
+  }
+  .heroHeader__contents {
+    padding-left: 60px;
+    padding-top: 50px;
+    height: 600px;
+  }
+  .heroHeader__season {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .heroHeader__contents > h3 > span {
+    margin-left: 30px;
+  }
+  .heroHeader__title {
+    font-size: 2.4rem;
+  }
+  .heroHeader__description {
+    width: 18rem;
+    font-size: 1.2rem;
     max-width: 360px;
-    height: auto;
-    font-weight: 400;
-    color: #ffffff;
+    font-weight: 500;
     border-left: 2px solid #ffffff;
-    padding-left: 10px;
+    padding-left: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .heroHeader {
+    height: 880px;
+  }
+  .heroHeader__contents {
+    padding-left: 90px;
+    padding-top: 80px;
+    height: 780px;
+  }
+  .heroHeader__season {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .heroHeader__contents > h3 > span {
+    margin-left: 30px;
+  }
+  .heroHeader__title {
+    font-size: 3.2rem;
+  }
+  .heroHeader__description {
+    width: 22rem;
+    font-size: 1.6rem;
+    border-left: 3px solid #ffffff;
+  }
+}
+@media (min-width: 1600px) {
+  .heroHeader {
+    height: 1200px;
+  }
+  .heroHeader__contents {
+    padding-left: 220px;
+    padding-top: 210px;
+    height: 970px;
+  }
+  .heroHeader__season {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .heroHeader__contents > h3 > span {
+    margin-left: 30px;
+  }
+  .heroHeader__title {
+    font-size: 3.2rem;
+  }
+  .heroHeader__description {
+    width: 22rem;
+    font-size: 1.6rem;
+    border-left: 3px solid #ffffff;
+  }
+}
+
+@media (min-width: 2300px) {
+  .heroHeader {
+    height: 1600px;
+  }
+  .heroHeader__contents {
+    padding-left: 260px;
+    padding-top: 210px;
+    height: 1300px;
+  }
+  .heroHeader__season {
+    font-size: 2.2rem;
+  }
+  .heroHeader__contents > h3 > span {
+    margin-left: 50px;
+  }
+  .heroHeader__title {
+    font-size: 6rem;
+  }
+  .heroHeader__description {
+    width: 40rem;
+    max-width: 600px;
+    font-size: 2.6rem;
+    border-left: 3px solid #ffffff;
+  }
 }

@@ -1,5 +1,14 @@
 .checkoutScreen {
   margin-top: 70px;
+
+  width: auto;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
 }
 
 .checkoutScreen__nav {
@@ -32,9 +41,6 @@
   text-align: center;
 }
 
-.checkoutScreen__paymentDetails {
-}
-
 .checkoutScreen__buyButton {
   background-color: #f8c33b;
   border: none;
@@ -56,4 +62,16 @@
 
 .checkoutScreen__postCheckout {
   margin: 10px;
+}
+
+@media (min-width: 380px) {
+  .checkoutScreen {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (min-width: 1280px) {
+  .checkoutScreen {
+    margin-top: 140px;
+  }
 }

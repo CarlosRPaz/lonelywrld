@@ -15,7 +15,7 @@
 }
 
 .cartProduct__img {
-  width: 200px;
+  width: 120px;
   border-radius: 5px;
 }
 
@@ -61,6 +61,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 }
 .cartProduct__amountAddSubIcons {
   color: rgb(112, 112, 112);
@@ -69,7 +71,7 @@
 
 .cartProduct__sizeLabel {
   color: rgb(112, 112, 112);
-  margin-left: 30px;
+  margin-left: 20px;
   margin-right: 6px;
 }
 
@@ -90,4 +92,25 @@
 
 .cartProduct__removeIcon {
   color: rgb(158, 158, 158);
+  cursor: pointer;
+}
+
+@media (min-width: 400px) {
+  .cartProduct__img {
+    width: 200px;
+  }
+  .cartProduct__sizeLabel {
+    margin-left: 30px;
+  }
+}
+@media (min-width: 800px) {
+  .cartProduct {
+    height: 120px;
+  }
+  .cartProduct__img {
+    width: 220px;
+  }
+  .cartProduct__amount {
+    margin-top: 36px;
+  }
 }

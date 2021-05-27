@@ -3,6 +3,7 @@ import "./styles/ContactScreen.css";
 import InstagramIcon from "@material-ui/icons/Instagram";
 
 import emailjs from "emailjs-com";
+import Footer from "../components/Footer";
 
 function ContactScreen() {
   function sendEmail(e) {
@@ -79,9 +80,13 @@ function ContactScreen() {
       </form>
 
       <div className="contactScreen__socials">
-        Follow us on Instagram:{" "}
-        <InstagramIcon className="contactScreen__IGIcon" />
+        <p>Follow us on Instagram: </p>
+        <a href="https://www.instagram.com/lonelywrl.d/" target="_blank">
+          <InstagramIcon className="contactScreen__IGIcon" />
+        </a>
       </div>
+
+      <Footer />
     </div>
   );
 }
